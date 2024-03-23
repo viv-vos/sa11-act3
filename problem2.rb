@@ -1,4 +1,8 @@
 def parse_invoices(invoice_data)
+  invoice_data.each_line do |x|
+    data = x.match(/(\d{4}-[0-1][0-9]-[0-3][0-9]) - (INV\d{3}) - (([a-zA-Z](\s*)\d{0})+) - (\$\d*)/)
+    puts "Date: #{data[1]}, Invoice Number: #{data[2]}, Client: #{data[3]}, Amount: #{data[6]}"
+  end
 end
 
 invoice_entries = <<-INVOICES
@@ -7,10 +11,4 @@ invoice_entries = <<-INVOICES
 2023-03-03 - INV003 - Gamma Inc - $3500
 INVOICES
 
-p parse_invoices(invoice_entries)
-
-m = "David 30".match /(?<name>\w+) (?<age>\d+)/
-p m[:age], (m[:name])
-# => "30"
-
-# => "David"
+parse_invoices(invoice_entries)
