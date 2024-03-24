@@ -1,5 +1,5 @@
 def extract_urls(text)
-  url1 = text.scan(/((http:|ftp:|https:)\/\/w{3}?.\w+.(com|org|net|int|edu|gov|mil)(\/\S*)?)/)
+  url1 = text.scan(/((http:|ftp:|https:)\/\/w{3}?.\w+.(com|org|net|int|edu|gov|mil)(\/\S*)?)[^\w]/)
   for a in url1 do
     puts a[0]
   end
